@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :user_pictures
-  has_many :pictures, through: :user_pictures
+  has_many :pictures
 
   validates :name, presence: true
 

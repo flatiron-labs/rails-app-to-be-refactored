@@ -1,5 +1,6 @@
 class Picture < ActiveRecord::Base
-  belongs_to :user, inverse_of: :user_pictures
+  belongs_to :user
+
   has_many :picture_comments
 
   validates_presence_of :url
