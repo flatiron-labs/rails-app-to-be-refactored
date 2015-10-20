@@ -1,13 +1,21 @@
 class PicturesController < ApplicationController
+  before_action :validate_user_participation!
+
   def create
-    # Only allow users with names who last signed in within a week ago to create
-    # pictures
-    if user.name && user.last_sign_in_at < 1.week.ago
-      picture = Picture.create(params[:picture])
-      if picture
-        # Send an email telling the user their picture was successfully created
-        PictureMailer.send_email_added_success(current_user, picture)
-      end
+    @picture = current_user.pictures.new(picture_params)
+
+    if @picture.save
+      # TODO: check this method... currently undefined
+      # PictureMailer.send_email_added_success(current_user, @picture)
+      redirect_to root_path, notice: 'Success! Check your inbox.'
+    else
+      redirect_to root_path, alert: 'Something went wrong... try again?'
     end
+  end
+
+  private
+
+  def picture_params
+    params.require(:picture).permit(:url)
   end
 end
