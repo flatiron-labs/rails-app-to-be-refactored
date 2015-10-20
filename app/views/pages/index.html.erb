@@ -1,0 +1,11 @@
+<h3>Welcome</h3>
+
+<h4>Recent Users</h4>
+<ul>
+<% # We need to update this if we ever add new admins %>
+<% @users.where("email != 'admin@example.com' AND email != 'admin2@example.com'").each do |user| %>
+  <li>
+    <%= user.name %> (<%= user.email %>) with <%= user.picture_comments.count %> picture comments.
+  </li>
+<% end %>
+</ul>
