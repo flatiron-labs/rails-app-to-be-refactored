@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :pictures
+  has_many :comments
 
   validates :name, presence: true
 
@@ -11,15 +12,6 @@ class User < ActiveRecord::Base
   end
 
   def has_any_pictures?
-    pictures.count > 0
-  end
-
-  def picture_comments
-    comments = []
-    pictures.each do |picture|
-      comments << picture.picture_comments
-    end
-
-    comments.flatten
+    pictures.any?
   end
 end
