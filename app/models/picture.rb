@@ -3,7 +3,8 @@ class Picture < ActiveRecord::Base
 
   has_many :comments
 
-  validates_presence_of :url
+  # TODO: improve format regex
+  validates :url, presence: true,
+                  format: { with: /https?:\/\/.+/i, on: :create }
 
-  # TODO Validate that urls are real
 end
