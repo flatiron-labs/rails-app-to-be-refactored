@@ -4,12 +4,7 @@
     <div class="column">
       <table class="table">
         <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= link_to user.name, user %></td>
-              <td><%= link_to user.email, user %></td>
-            </tr>
-          <% end %>
+          <%= render @users %>
         </tbody>
       </table>
     </div>

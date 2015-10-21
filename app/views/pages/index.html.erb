@@ -3,6 +3,8 @@
 <h4>Recent Users</h4>
 <ul>
   <% @users.each do |user| %>
-    <%= render user %>
+    <%= user.name %>
+    (<%= user.email %>)
+    with <%= user.comments.count %> picture comments.
   <% end %>
 </ul>
