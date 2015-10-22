@@ -1,8 +1,8 @@
 class Picture < ActiveRecord::Base
-  belongs_to :user, inverse_of: :user_pictures
-  has_many :picture_comments
+  belongs_to :user
+  has_many :comments
 
-  validates_presence_of :url
-
-  # TODO Validate that urls are real
+  # TODO: improve format regex
+  validates :url, presence: true,
+                  format: { with: /https?:\/\/.+/i, on: :create }
 end
